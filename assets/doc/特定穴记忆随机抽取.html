@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>特定穴记忆随机</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(238, 238, 238);
+        }
+
+        #buttonBox {
+            width: 130px;
+            height: 160px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            text-align: center;
+            font-size: 14px;
+            margin: 20px 2px;
+            cursor: pointer;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 10px;
+        }
+
+        th,
+        td {
+            border: none;
+            text-align: center;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            transition: box-shadow 0.3s ease;
+            width: calc(100% / 11);
+            height: calc(calc(100vh - 132px) / 13);
+        }
+
+        th {
+
+            background-color: #2196F3;
+            color: white;
+
+        }
+
+        td {
+            background-color: white;
+        }
+
+        td:hover {
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="buttonBox">
+        <button class="button" id="startButton" onclick="startLottery()">开始抽奖</button>
+        <button class="button" id="stopButton" onclick="stopLottery()" disabled>停止抽奖</button>
+    </div>
+    <table id="lotteryTable">
+        <thead>
+            <tr>
+                <th>经络</th>
+                <th>井穴</th>
+                <th>荥穴</th>
+                <th>输穴</th>
+                <th>经穴</th>
+                <th>合穴</th>
+                <th>原穴</th>
+                <th>络穴</th>
+                <th>俞穴</th>
+                <th>募穴</th>
+                <th>郄穴</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>肺经（脏）</th>
+                <td>少商</td>
+                <td>鱼际</td>
+                <td>太渊</td>
+                <td>经渠</td>
+                <td>尺泽</td>
+                <td>太渊</td>
+                <td>列缺</td>
+                <td>肺俞</td>
+                <td>中府</td>
+                <td>孔最</td>
+            </tr>
+            <tr>
+                <th>大肠经（腑）</th>
+                <td>商阳</td>
+                <td>二间</td>
+                <td>三间</td>
+                <td>阳溪</td>
+                <td>曲池</td>
+                <td>合谷</td>
+                <td>偏厉</td>
+                <td>大肠俞</td>
+                <td>天枢</td>
+                <td>温溜</td>
+            </tr>
+            <tr>
+                <th>胃经（腑）</th>
+                <td>厉兑</td>
+                <td>内庭</td>
+                <td>陷谷</td>
+                <td>解溪</td>
+                <td>足三里</td>
+                <td>冲阳</td>
+                <td>丰隆</td>
+                <td>胃俞</td>
+                <td>中脘</td>
+                <td>梁丘</td>
+            </tr>
+            <tr>
+                <th>脾经（脏）</th>
+                <td>隐白</td>
+                <td>大都</td>
+                <td>太白</td>
+                <td>商丘</td>
+                <td>阴陵泉</td>
+                <td>太白</td>
+                <td>公孙</td>
+                <td>脾俞</td>
+                <td>章门</td>
+                <td>地机</td>
+            </tr>
+            <tr>
+                <th>心经（脏）</th>
+                <td>少冲</td>
+                <td>少府</td>
+                <td>神门</td>
+                <td>灵道</td>
+                <td>少海</td>
+                <td>神门</td>
+                <td>通里</td>
+                <td>心俞</td>
+                <td>巨阙</td>
+                <td>阴郄</td>
+            </tr>
+            <tr>
+                <th>小肠经（腑）</th>
+                <td>少泽</td>
+                <td>前谷</td>
+                <td>后溪</td>
+                <td>阳谷</td>
+                <td>小海</td>
+                <td>腕骨</td>
+                <td>支正</td>
+                <td>小肠俞</td>
+                <td>关元</td>
+                <td>养老</td>
+            </tr>
+            <tr>
+                <th>膀胱经（腑）</th>
+                <td>至阴</td>
+                <td>足通谷</td>
+                <td>束骨</td>
+                <td>昆仑</td>
+                <td>委中</td>
+                <td>京骨</td>
+                <td>飞扬</td>
+                <td>膀胱俞</td>
+                <td>中极</td>
+                <td>金门</td>
+            </tr>
+            <tr>
+                <th>肾经（脏）</th>
+                <td>涌泉</td>
+                <td>然谷</td>
+                <td>太溪</td>
+                <td>复溜</td>
+                <td>阴谷</td>
+                <td>太溪</td>
+                <td>大钟</td>
+                <td>肾俞</td>
+                <td>京门</td>
+                <td>水泉</td>
+            </tr>
+            <tr>
+                <th>心包经（脏）</th>
+                <td>中冲</td>
+                <td>劳宫</td>
+                <td>大陵</td>
+                <td>间使</td>
+                <td>曲泽</td>
+                <td>大陵</td>
+                <td>内关</td>
+                <td>心包俞</td>
+                <td>膻中</td>
+                <td>郄门</td>
+            </tr>
+            <tr>
+                <th>三焦经（腑）</th>
+                <td>关冲</td>
+                <td>液门</td>
+                <td>中渚</td>
+                <td>阳池</td>
+                <td>支沟</td>
+                <td>天井</td>
+                <td>外关</td>
+                <td>三焦俞</td>
+                <td>石门</td>
+                <td>会宗</td>
+            </tr>
+            <tr>
+                <th>胆经（腑）</th>
+                <td>足窍阴</td>
+                <td>侠溪</td>
+                <td>足临泣</td>
+                <td>丘墟</td>
+                <td>阳辅</td>
+                <td>阳陵泉</td>
+                <td>光明</td>
+                <td>胆俞</td>
+                <td>日月</td>
+                <td>外丘</td>
+            </tr>
+            <tr>
+                <th>肝经（脏）</th>
+                <td>大墩</td>
+                <td>行间</td>
+                <td>太冲</td>
+                <td>中封</td>
+                <td>曲泉</td>
+                <td>太冲</td>
+                <td>蠡沟</td>
+                <td>肝俞</td>
+                <td>期门</td>
+                <td>中都</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        var table = document.getElementById("lotteryTable");
+            var cells = table.getElementsByTagName("td");
+            var rows = 12; // 表格行数
+            var cols = 10; // 表格列数
+            var totalCells = rows * cols;
+            var isLotteryStarted = false;
+            var historyCellIndexes = [];
+
+
+            function isInHistory(index) {
+                flag = false;
+                for (i in historyCellIndexes) {
+                    if (historyCellIndexes[i] == index) {
+                        flag = true;
+                    }
+                }
+                return flag;
+            }
+
+            function random() {
+                var randomIndex;
+                while (isInHistory(randomIndex = Math.floor(Math.random() * totalCells))) { }
+                highlightCell(randomIndex);
+                return randomIndex;
+            }
+
+            // 开始抽奖
+            function startLottery() {
+                if (historyCellIndexes.length == rows * cols) {
+                    alert("已经全部抽取过啦！");
+                    return;
+                }
+                if (isLotteryStarted === true) return;
+                isLotteryStarted = true;
+
+                if (historyCellIndexes.length > 0) {
+                    var latestIndex = historyCellIndexes[historyCellIndexes.length - 1];
+                    cells[latestIndex].style.color = "darkgrey ";
+                    cells[latestIndex].style.backgroundColor = "grey";
+                }
+
+                intervalId = setInterval(random, 100);
+
+                document.getElementById("startButton").disabled = true;
+                document.getElementById("stopButton").disabled = false;
+            }
+
+            // 停止抽奖
+            function stopLottery() {
+                isLotteryStarted = false;
+                clearInterval(intervalId);
+
+                var endIndex = random();
+                cells[endIndex].style.backgroundColor = "yellow";
+                historyCellIndexes.push(endIndex);
+
+                document.getElementById("startButton").disabled = false;
+                document.getElementById("stopButton").disabled = true;
+            }
+
+            // 高亮显示中奖的格子
+            function highlightCell(index) {
+                for (var i = 0; i < cells.length; i++) {
+                    if (isInHistory(i)) {
+                        continue;
+                    }
+                    cells[i].style.backgroundColor = "";
+                }
+                cells[index].style.backgroundColor = "yellow";
+            }
+
+    </script>
+</body>
+
+</html>

@@ -4,4 +4,12 @@
 
     --general-theme-color-light:#000;
     --general-theme-color-dark:#fff;
+
+    --general-theme-grey-light:#f1f1f1;/*  */
+    --general-theme-grey-dark:#505d65;
+
+    --general-theme-green-light:#99de99;
+    --general-theme-green-dark:#4caf50;
+
+
 }

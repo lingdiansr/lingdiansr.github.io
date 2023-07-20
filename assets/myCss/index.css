@@ -3,14 +3,16 @@
 :root {
     --background-theme-color: var(--background-theme-color-light);
     --general-theme-color: var(--general-theme-color-light);
+    --general-theme-grey:var(--general-theme-grey-light);
+    --general-theme-green:var(--general-theme-green-light);
 
     --general-time: 1s;
 }
 
 body {
     background: var(--background-theme-color);
-    /* transition: background-color 5s ease; */
     transition: background-color 3s ease;
+    display: flex;
 }
 
 * {
@@ -49,4 +51,35 @@ span {
     transition: color var(--general-time) ease;
 }
 
-#sidebar {}
+#sidebar {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3%;
+    height: 40%;
+    background-color: var(--general-theme-grey);
+    padding: 2px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 4px 4px 0;
+}
+
+button {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-color: var(--general-theme-green);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}

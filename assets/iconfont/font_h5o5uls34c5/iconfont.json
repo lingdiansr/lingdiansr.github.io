@@ -1,0 +1,16 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "13374960",
+      "name": "昼夜交替",
+      "font_class": "zhouyejiaoti",
+      "unicode": "e7c2",
+      "unicode_decimal": 59330
+    }
+  ]
+}
